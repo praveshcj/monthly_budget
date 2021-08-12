@@ -5,8 +5,23 @@ const models = require('./models/models');
 const app = express();
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost/ourdata');
+mongoose.connect('mongodb+srv://root_user:root_user@cluster0.ud5re.mongodb.net/monthly_budget');
 mongoose.Promise = global.Promise;
+
+
+/* Test Data Saving*/
+// const test_data = new models.user(({
+//     username: 'test_user', 
+//     firstname: 'test', 
+//     lastname: 'user', 
+//     dob: Date.now(),
+//     salt: 'lol',
+//     phash: 'lol',
+//     defaultcurrency: 'INR'
+// }))
+
+// test_data.save();
+console.log("Saved")
 
 app.use(express.static('public'));
 

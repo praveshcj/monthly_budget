@@ -5,12 +5,13 @@ var userSchema = Schema({
     username: {type: String, required: true}, 
     firstname: {type: String, required: true}, 
     lastname: {type: String, required: true}, 
-    dob: {tyep: Date, required: true},
+    dob: {type: Date, required: true},
     salt: {type: String, required: true}, 
     phash: {type: String, required: true},
     defaultcurreny: {
         type: String,
-        enum: ['USD', 'INR']
+        enum: ['USD', 'INR'],
+        default: 'INR'
     }
 });
 
