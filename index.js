@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const models = require('./models/models');
 // set up our express app
 const app = express();
 
@@ -10,9 +10,9 @@ mongoose.Promise = global.Promise;
 
 app.use(express.static('public'));
 
-app.use(express.json());
+// app.use(express.json());s
 // initialize routes
-app.use('/api',require('./routes/api'));
+// app.use('/api',require('./router/api'));
 
 // error handling middleware
 app.use(function(err,req,res,next){
