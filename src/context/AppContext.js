@@ -21,6 +21,8 @@ const AppReducer = (state, action) => {
 };
 
 const initialState = {
+	isAuth: false,
+	username: "",
 	budget: 2000,
 	expenses: [
 		{ id: 12, name: 'shopping', cost: 40 },
@@ -37,6 +39,8 @@ export const AppProvider = (props) => {
 	return (
 		<AppContext.Provider
 			value={{
+				isAuth: state.isAuth,
+				username: state.username,
 				budget: state.budget,
 				expenses: state.expenses,
 				dispatch,
