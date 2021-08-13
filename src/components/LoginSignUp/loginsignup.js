@@ -8,16 +8,19 @@ class LoginSignUp extends Component{
         loginFlag: 1
     }
     
-    toggleChild(){
-        this.setState({
-            loginFlag: !this.loginFlag
-        })
-    }
+    toggleChild = ( )=>{
+            this.setState({
+                loginFlag: !this.state.loginFlag
+            })
+    };
 
 
     render(){
         if(this.state.loginFlag === 1 ){
-            return <LogIn toggleChild = {this.toggleChild}/>
+            return (
+                    <LogIn toggleChild = {this.toggleChild}/>
+                
+            );
         }
         else return <SignUp  toggleChild = {this.toggleChild}/>
     }

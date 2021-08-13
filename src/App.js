@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LoginSignUp from './components/LoginSignUp/loginsignup';
 // import { AppContext } from './context/AppContext';
 import { Redirect } from 'react-router';
+import { Row, Col } from 'react-bootstrap';
 
 class MoneyManager extends React.Component{
   state={
@@ -34,13 +35,20 @@ class MoneyManager extends React.Component{
     }
     else{
       return(
-        <Router>
-          <Redirect to='/login'/>
-          <Switch>
-            <Route path='/login' component={LoginSignUp}/>
-          </Switch>
-        </Router>
-
+        <Container > 
+          <Row className=''>
+            <Col></Col>
+            <Col>
+            <Router>
+              <Redirect to='/login'/>
+              <Switch>
+                <Route path='/login' component={LoginSignUp}/>
+              </Switch>
+            </Router>
+            </Col>
+            <Col></Col>
+          </Row>
+        </Container>
       );
     }
   }
