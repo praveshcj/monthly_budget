@@ -5,24 +5,24 @@ import SignUp  from './signup';
 
 class LoginSignUp extends Component{
     state = {
-        loginFlag: 1
+        loginFlag: true
     }
     
     toggleChild = ( )=>{
-            this.setState({
-                loginFlag: !this.state.loginFlag
-            })
+        this.setState({
+            loginFlag: !this.state.loginFlag
+        })
     };
 
 
     render(){
-        if(this.state.loginFlag === 1 ){
+        if(this.state.loginFlag === true ){
             return (
                     <LogIn toggleChild = {this.toggleChild}/>
                 
             );
         }
-        else return <SignUp  toggleChild = {this.toggleChild}/>
+        else return <SignUp toggleChild = {this.toggleChild}/>
     }
 }
 

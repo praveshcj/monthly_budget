@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Expenses from './components/Expenses/Expenses';
 import {Navbar, Nav, Container} from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import LoginSignUp from './components/LoginSignUp/loginsignup';
+import LoginSignUp from './components/Login/loginsignup';
 // import { AppContext } from './context/AppContext';
 import { Redirect } from 'react-router';
 import { Row, Col } from 'react-bootstrap';

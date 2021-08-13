@@ -1,17 +1,14 @@
 import React, { Component } from "react";
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
 export default class Login extends Component {
     render() {
         return (
-            <>
+            <Container >
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" />
-                    <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                    </Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -21,14 +18,21 @@ export default class Login extends Component {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
+                <Row>
+                <Col>
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+                </Col>
+                <Col></Col>
+                <Col>
                 <Button variant="secondary" onClick={this.props.toggleChild}>
                     Sign Up
                 </Button>
+                </Col>
+                </Row>
             </Form>
-            </>
+            </Container>
         );
     }
 }
