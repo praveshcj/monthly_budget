@@ -1,6 +1,6 @@
 const express = require('express'); //Line 1
 const app = express(); //Line 2
-const port = process.env.PORT || 4000; //Line 3
+const port = 4000; //Line 3
 // const port = 4000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -14,10 +14,13 @@ app.use(express.urlencoded({     // to support URL-encoded bodies
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`)); //Line 6
 
+app.use(express.static(__dirname+'/build/'));
+
+
 // create a GET route
-app.get('/', (req, res) => {
-  console.log("Connected");
-})
+app.get('*', (req, res) => {
+  res.sendFile(__dirname+'/build/index.html');
+});
 
 
 app.get('/expense_backend', (req, res) => { //Line 9
