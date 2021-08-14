@@ -15,11 +15,14 @@ app.use(express.urlencoded({     // to support URL-encoded bodies
 app.listen(port, () => console.log(`Listening on port ${port}`)); //Line 6
 
 // create a GET route
+app.get('/', (req, res) => {
+  console.log("Connected");
+})
+
+
 app.get('/expense_backend', (req, res) => { //Line 9
   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
 }); //Line 11
-
-
 
 
 app.post('/postUserData', (req, res) => {
