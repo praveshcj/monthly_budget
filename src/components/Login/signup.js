@@ -62,7 +62,15 @@ export default class SignUp extends Component {
                         <Form.Control type="email" name='email' placeholder="Enter email" />
                     </Form.Group>
                     </Row>
-                    
+                    <Row>
+                    <Form.Group controlId="dob" bsSize="large">
+                        <Form.Label>Date </Form.Label>
+                        <Form.Control
+                            type="date"
+                        />
+                    </Form.Group>
+                    </Row>
+
                     <Form.Group className="mb-3" controlId="formPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" name='password' placeholder="Password" />
