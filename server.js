@@ -5,6 +5,7 @@ const port = 4000; //Line 3
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const router = express.Router();
+const path = require('path')
 
 
 app.use( express.json() );       // to support JSON-encoded bodies
@@ -14,12 +15,15 @@ app.use(express.urlencoded({     // to support URL-encoded bodies
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`)); //Line 6
 
-app.use(express.static(__dirname+'/build/'));
+const buildPath = path.join(__dirname, 'build');
+app.use(express.static(buildPath));
+
 
 
 // create a GET route
 app.get('*', (req, res) => {
-  res.sendFile(__dirname+'/build/index.html');
+  filePath = path.join(__dirname, 'build', 'index.html');
+  res.sendFile(filePath);
 });
 
 
