@@ -10,7 +10,7 @@ import { Row, Col } from 'react-bootstrap';
 
 class MoneyManager extends React.Component{
   state={
-    isAuth: false, 
+    isAuth: true, 
     username: ""
   }
 

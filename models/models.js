@@ -19,6 +19,10 @@ var userSchema = Schema({
 var expenseSchema = Schema({
     user : {type: Schema.Types.ObjectId, ref: 'User', required : true},
     expenseamount: {type: Number, required: true},
+    expensetype:{
+        type:String, 
+        enum: ['Food', 'Investment', 'Personal','Travelling', 'Accessories', 'Others']
+    },
     expensecurrency: {
         type: String, 
         enum: ['USD','INR']
