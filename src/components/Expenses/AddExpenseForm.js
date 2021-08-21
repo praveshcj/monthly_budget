@@ -7,7 +7,6 @@ import { Component } from 'react';
 class AddExpenseForm extends Component{
 	addExpense = (event) => {
 		event.preventDefault();
-		console.log(event.target);
 	};
 
 	render(){

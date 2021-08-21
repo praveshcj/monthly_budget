@@ -1,5 +1,5 @@
 const Dashboard = () => {
-    
+    return <p>Something</p>
 }
 
 

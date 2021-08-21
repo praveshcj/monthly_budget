@@ -6,14 +6,9 @@ export default class SignUp extends Component {
     // url = "http://localhost:5000";
 
     submitUserDetails = (e) =>{
-        // console.log(e);
         e.preventDefault();
-        // e.stopPropagation();
-        // console.log(e.currentTarget);
         const formData = new FormData(e.target);
         var formDataObj = Object.fromEntries(formData.entries());
-        console.log(formData);
-        console.log(formDataObj);
         const payLoad ={
             'first_name': formDataObj.first_name,
             'last_name' : formDataObj.last_name,

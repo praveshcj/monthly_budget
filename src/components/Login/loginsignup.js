@@ -8,11 +8,6 @@ class LoginSignUp extends Component{
         loginFlag: true
     }
 
-
-    componentDidMount =()=>{
-        console.log(this.props);
-    }
-    
     toggleChild = ( )=>{
         this.setState({
             loginFlag: !this.state.loginFlag
@@ -23,7 +18,7 @@ class LoginSignUp extends Component{
     render(){
         if(this.state.loginFlag === true ){
             return (
-                    <LogIn toggleChild = {this.toggleChild} toggleAuthenticate={this.props.toggleAuthenticate}/>
+                    <LogIn toggleChild = {this.toggleChild} checkTokenAndRedirect = {this.props.checkTokenAndRedirect}/>
                 
             );
         }

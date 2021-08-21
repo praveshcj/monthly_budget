@@ -1,12 +1,19 @@
 import React, { Component } from "react";
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Redirect } from "react-router-dom";
 
 export default class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: false,
+        };
+    }
+
     loginSubmit = (e)=>{
         e.preventDefault();
         const formData = new FormData(e.target);
         var formDataObj = Object.fromEntries(formData.entries());
-        console.log(formDataObj);
         const payLoad ={
             'email': formDataObj.email,
             'password': formDataObj.password
@@ -22,21 +29,20 @@ export default class Login extends Component {
         })
         .then(res => res.json())
         .then(data =>{
-            console.log(data);
             if(data.res == "Valid"){
                 localStorage.setItem('key', data.token);
-                
+                this.props.checkTokenAndRedirect();
+                this.setState({
+                    redirect: true,
+                });
             }
         })
     }
 
-    componentDidMount=() => {
-        console.log(this.props);
-    };
-
     render() {
         return (
             <Container >
+            { this.state.redirect ? (<Redirect to="/"/>) : null }
             <Form onSubmit={this.loginSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

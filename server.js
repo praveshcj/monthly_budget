@@ -49,8 +49,6 @@ get_phash =(salt, password) =>{
   return password;
 }
 
-console.log(makeid(5));
-
 // create a GET route
 app.get('*', (req, res) => {
   filePath = path.join(__dirname, 'build', 'index.html');
@@ -65,7 +63,6 @@ app.get('/expense_backend', (req, res) => { //Line 9
 
 
 app.post('/postUserData', (req, res) => {
-  console.log(req.body);
   new_user = new user({
     firstname: req.body.first_name,
     lastname : req.body.last_name,
@@ -76,7 +73,6 @@ app.post('/postUserData', (req, res) => {
   });
   new_user.save(function (err) {
     if (err){
-      console.log(err);
       return handleError(err);
     } 
   });
