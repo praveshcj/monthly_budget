@@ -1,4 +1,5 @@
 const express = require('express'); //Line 1
+const {to} = require('await-to-js');
 const app = express(); //Line 2
 const port = process.env.PORT  || 4000; //Line 3
 // const port = 4000;
@@ -6,10 +7,12 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const path = require('path')
 const models = require('./models/models');
+const { getJwtToken } = require('./utils/helper');
 const user = models.user;
 
 
 var mongoDB = "mongodb+srv://root_user:root_user@cluster0.ud5re.mongodb.net/monthly_budget"
+const jwtPrivateKey = 'sss';
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 
 //Get the default connection
@@ -81,22 +84,28 @@ app.post('/postUserData', (req, res) => {
   res.end("yes");
 })
 
-app.post('/loginuser', (req, res) =>{
-  console.log(req.body);
-  const query = user.where({emailid: req.body.email})
-  query.findOne((err, kitten) =>{
-    if(err) return handleError(err);
-    if(kitten){
-      console.log(kitten);
-      if(get_phash(kitten.salt, req.body.password) === kitten.phash){
-        res.send({res: "Valid"});
-      }
-      else{
-        res.send({res: "Invalid"});
-      }
+app.post('/loginuser', async (req, res) =>{
+  const {email, password} = req.body;
+  const findQuery = {
+    emailid: email,
+  };
+
+  const [ err, userData ] = await to(user.findOne(findQuery));
+  if(err || !userData) {
+    res.status(500);
+    res.send('Internal Server Error');
+  } else {
+    if(get_phash(userData.salt, password) === userData.phash){
+      const jwtToken = getJwtToken({ email: userData.emailid }, jwtPrivateKey);
+      res.status(200);
+      res.send({
+        res: "Valid",
+        token: jwtToken,
+        });
     }
     else{
-      res.send({res: "Invalid"})
+      res.status(403)
+      res.send({res: "Wrong password/email"});
     }
-  })
-})
+  }
+});
