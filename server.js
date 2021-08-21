@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const path = require('path')
 const models = require('./models/models');
-const { getJwtToken } = require('./utils/helper');
+const { getJwtToken, verifyJwtToken } = require('./utils/helper');
 const user = models.user;
 
 
@@ -108,4 +108,26 @@ app.post('/loginuser', async (req, res) =>{
       res.send({res: "Wrong password/email"});
     }
   }
+});
+
+app.post('/getUserInfo', async (req, res) =>{
+  const { token } = req.body;
+  const { isTokenVerified, tokenData } = verifyJwtToken(token, jwtPrivateKey);
+  if(isTokenVerified) {
+    const { email } = tokenData;
+    const findQuery = {
+      emailid: email,
+    };
+    const [ err, userData ] = await to(user.findOne(findQuery));
+    if(err || !userData) {
+      res.status(500);
+      res.send('Internal Server Error');
+    }
+    res.status(200);
+    res.send(userData);
+  } else {
+    res.status(401);
+    res.send({message: 'Invalid token'});
+  }
+  
 });
