@@ -4,7 +4,7 @@ import Expenses from './components/Expenses/Expenses';
 import {Navbar, Nav, Container} from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LoginSignUp from './components/Login/loginsignup';
-// import { AppContext } from './context/AppContext';
+import { AppContext } from './context/AppContext';
 import { Redirect } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
 
@@ -12,6 +12,18 @@ class MoneyManager extends React.Component{
   state={
     isAuth: false, 
     username: ""
+  }
+
+  componentDidMount =() =>{ 
+    console.log(this.context);
+    console.log(this.AppContext);
+  }
+
+  toggleAuthenticate = (email) =>{
+    this.setState({
+      isAuth : !this.state.isAuth,
+      username: email
+    })
   }
 
 	render(){
@@ -42,7 +54,7 @@ class MoneyManager extends React.Component{
             <Router>
               <Redirect to='/login'/>
               <Switch>
-                <Route path='/login' component={LoginSignUp}/>
+                <Route path='/login' render={()=> <LoginSignUp toggleAuthenticate={this.toggleAuthenticate}/>} />
               </Switch>
             </Router>
             </Col>
@@ -54,4 +66,5 @@ class MoneyManager extends React.Component{
   }
 }
 
+MoneyManager.contextType = AppContext;
 export default MoneyManager;

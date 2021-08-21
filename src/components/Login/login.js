@@ -23,9 +23,15 @@ export default class Login extends Component {
         .then(res => res.json())
         .then(data =>{
             console.log(data);
+            if(data.res == "Valid"){
+                this.props.toggleAuthenticate(formDataObj.email);
+            }
         })
     }
 
+    componentDidMount=() => {
+        console.log(this.props);
+    };
 
     render() {
         return (

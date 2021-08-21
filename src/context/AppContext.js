@@ -31,7 +31,7 @@ const initialState = {
 	],
 };
 
-export const AppContext = React.createContext();
+export const AppContext = React.createContext(initialState);
 
 export const AppProvider = (props) => {
 	const [state, dispatch] = React.useReducer(AppReducer, initialState);

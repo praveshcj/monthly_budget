@@ -7,6 +7,11 @@ class LoginSignUp extends Component{
     state = {
         loginFlag: true
     }
+
+
+    componentDidMount =()=>{
+        console.log(this.props);
+    }
     
     toggleChild = ( )=>{
         this.setState({
@@ -18,7 +23,7 @@ class LoginSignUp extends Component{
     render(){
         if(this.state.loginFlag === true ){
             return (
-                    <LogIn toggleChild = {this.toggleChild}/>
+                    <LogIn toggleChild = {this.toggleChild} toggleAuthenticate={this.props.toggleAuthenticate}/>
                 
             );
         }
