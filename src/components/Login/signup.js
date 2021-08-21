@@ -17,6 +17,7 @@ export default class SignUp extends Component {
         const payLoad ={
             'first_name': formDataObj.first_name,
             'last_name' : formDataObj.last_name,
+            'dob':formDataObj.dob,
             'email': formDataObj.email,
             'password': formDataObj.password
         }
@@ -59,15 +60,13 @@ export default class SignUp extends Component {
                     <Row>
                     <Form.Group className="mb-3" controlId="formEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" name='email' placeholder="Enter email" />
+                        <Form.Control type="email" name='email' placeholder="Enter Email" />
                     </Form.Group>
                     </Row>
                     <Row>
-                    <Form.Group controlId="dob" bsSize="large">
-                        <Form.Label>Date </Form.Label>
-                        <Form.Control
-                            type="date"
-                        />
+                    <Form.Group className="mb-3" controlId="dob" >
+                        <Form.Label>Date of Birth</Form.Label>
+                        <Form.Control type="date" name="dob" placeholder="Enter Date of Birth"/>
                     </Form.Group>
                     </Row>
 

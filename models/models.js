@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
     , Schema = mongoose.Schema
 
 var userSchema = Schema({
-    username: {type: String, required: true}, 
+    emailid: {type: String, required: true}, 
     firstname: {type: String, required: true}, 
     lastname: {type: String, required: true}, 
     dob: {type: Date, required: true},
