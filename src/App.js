@@ -10,13 +10,40 @@ import { Row, Col } from 'react-bootstrap';
 
 class MoneyManager extends React.Component{
   state={
-    isAuth: true, 
+    isAuth: false, 
     username: ""
   }
 
   componentDidMount =() =>{ 
     console.log(this.context);
     console.log(this.AppContext);
+    var key = localStorage.getItem("key");
+    var isVal = false;
+    if(key){
+      const payLoad ={
+          'token': key
+      }
+      fetch("/getUserInfo",{
+          method:'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payLoad)
+      })
+      .then(res => res.json())
+      .then(data =>{
+          console.log(data);
+      })
+      .err(err =>{
+        console.log(err);
+      })
+    }
+    if(isVal){
+      this.setState({
+        isAuth:true
+      })
+    }
   }
 
   toggleAuthenticate = (email) =>{

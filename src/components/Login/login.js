@@ -24,7 +24,8 @@ export default class Login extends Component {
         .then(data =>{
             console.log(data);
             if(data.res == "Valid"){
-                this.props.toggleAuthenticate(formDataObj.email);
+                localStorage.setItem('key', data.token);
+                
             }
         })
     }
