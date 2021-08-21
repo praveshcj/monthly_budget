@@ -124,7 +124,12 @@ app.post('/getUserInfo', async (req, res) =>{
       res.send('Internal Server Error');
     }
     res.status(200);
-    res.send(userData);
+    res.send({
+      emailId: userData.emailid,
+      firstName: userData.firstname,
+      lastName: userData.lastname,
+      dob: userData.dob,
+    });
   } else {
     res.status(401);
     res.send({message: 'Invalid token'});
